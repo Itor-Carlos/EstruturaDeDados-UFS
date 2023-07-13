@@ -9,28 +9,37 @@
 typedef int ITEM;
 
 typedef struct {
-  ITEM *itens[MAX];
+  ITEM *itens;
   int tamanho;
+  int capacidadeMaxima;
 } LISTA_DINAMICA;
 
 
 char compare(ITEM x, ITEM y) { return x > y ? 1 : (x < y ? -1 : 0); }
 void inicializarListaDinamica(LISTA_DINAMICA *lista) { lista->tamanho = 0; }
 
+void inicializarListaDinamica(LISTA_DINAMICA *lista, int tamanho) {
+  lista->itens = (ITEM *)malloc(sizeof(ITEM) * tamanho);
+  lista->capacidadeMaxima = tamanho;
+  lista->tamanho = 0;
+}
+
+void expandirTamanhoListaDinamica(LISTA_DINAMICA *l) {
+  l->itens = (ITEM *)realloc(l->itens, 2 * l->capacidadeMaxima * sizeof(ITEM));
+  l->capacidadeMaxima = 2 * l->capacidadeMaxima;
+}
+
 int tamanhoListaDinamica(LISTA_DINAMICA *list) { return list->tamanho; }
 
-bool cheiaListaDinamica(LISTA_DINAMICA *lista) { return lista->tamanho == MAX; }
+bool cheiaListaDinamica(LISTA_DINAMICA *lista) { return lista->tamanho == lista->capacidadeMaxima; }
 
 bool vaziaListaDinamica(LISTA_DINAMICA *lista) { return lista->tamanho == 0; }
 
 bool inserirListaDinamica(ITEM item, LISTA_DINAMICA *lista) {
   if (cheiaListaDinamica(lista))
-    return false;
+    expandirTamanhoListaDinamica(lista);
   else {
-    ITEM *ponteiroItem = NULL;
-    ponteiroItem = (ITEM *)malloc(sizeof(ITEM));
-    *ponteiroItem = item;
-    lista->itens[lista->tamanho++] = ponteiroItem;
+    lista->itens[lista->tamanho++] = item;
     return true;
   }
 }
@@ -39,16 +48,16 @@ void exibirListaDinamica(LISTA_DINAMICA *lista) {
   printf("[");
   for (int i = 0; i < lista->tamanho; i++) {
     if (i == lista->tamanho - 1)
-      printf("%d", *lista->itens[i]);
+      printf("%d", lista->itens[i]);
     else
-      printf("%d,", *lista->itens[i]);
+      printf("%d,", lista->itens[i]);
   }
   printf("]");
 }
 
 int buscarListaDinamica(ITEM item, LISTA_DINAMICA *l) {
   for (int i = 0; i < l->tamanho; i++) {
-    if (compare(item, *l->itens[i]) == 0) {
+    if (compare(item, l->itens[i]) == 0) {
       return i;
     }
   }
@@ -63,7 +72,7 @@ bool alterarListaDinamica(ITEM item, int pos, LISTA_DINAMICA *l) {
 
 int buscarEmListaDinamica(ITEM item, int inicio, int fim, LISTA_DINAMICA *l) {
   for (int i = inicio; i < fim; i++) {
-    if (compare(item, *l->itens[i]) == 0) {
+    if (compare(item, l->itens[i]) == 0) {
       return i;
     }
   }
@@ -73,7 +82,7 @@ int buscarEmListaDinamica(ITEM item, int inicio, int fim, LISTA_DINAMICA *l) {
 void limparListaDinamica(LISTA_DINAMICA *l) {
   for (int i = 0; i < l->tamanho; i++) {
     free(l->itens[i]);
-    printf("%d\n", *l->itens[i]);
+    printf("%d\n", l->itens[i]);
     l->tamanho--;
   }
 }

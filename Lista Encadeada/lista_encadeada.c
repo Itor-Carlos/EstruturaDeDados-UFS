@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 typedef struct estrutura{
   int item;
@@ -33,4 +34,8 @@ void exibeLista(LISTA_ENCADEADA *lista){
         cabeca = cabeca->prox;
     }
     printf("]");
+}
+
+bool igual(int item, int itemComparativo){
+    return item == itemComparativo;
 }

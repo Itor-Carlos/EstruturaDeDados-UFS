@@ -39,3 +39,9 @@ void exibeLista(LISTA_ENCADEADA *lista){
 bool igual(int item, int itemComparativo){
     return item == itemComparativo;
 }
+
+int main(){
+    
+
+    return 0;
+}

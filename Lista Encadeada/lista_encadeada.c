@@ -19,3 +19,18 @@ void inicializar(LISTA_ENCADEADA *lista){
     lista->cabeca = NULL;
     lista->tamanho = 0;
 }
+
+void exibeLista(LISTA_ENCADEADA *lista){
+    printf("[");
+    NO *cabeca = lista->cabeca;
+    for(int i = 0; i<lista->tamanho; i++){
+        if(i == lista->tamanho-1){
+            printf("%d", cabeca->item);
+        }
+        else{
+            printf("%d,",cabeca->item);
+        }
+        cabeca = cabeca->prox;
+    }
+    printf("]");
+}

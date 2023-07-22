@@ -16,6 +16,21 @@ typedef struct {
   int tamanho;
 } LISTA;
 
+void exibirItem(ITEM i) { printf("%d", i); }
+
+void exibirLista(LISTA *l) {
+  printf("[");
+  NO *p = l->cabeca;
+  while (p) // p != NULL
+  {
+    exibirItem(p->item);
+    if (p->prox)
+      printf(",");
+    p = p->prox;
+  }
+  printf("]");
+}
+
 int main(){
     
 

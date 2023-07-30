@@ -19,6 +19,16 @@ typedef struct
     int tamanho;
 } LISTA;
 
+void inicializar(LISTA *lista){
+    l->cabeca = NULL;
+    l->cauda = NULL;
+    l->tamanho = 0;
+}
+
+int tamanhoLista(LISTA *lista){
+   return l->tamanho;
+}
+
 int main(){
     return 0;
 }

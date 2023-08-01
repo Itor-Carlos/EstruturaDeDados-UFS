@@ -42,6 +42,12 @@ void exibirLista(LISTA *l) {
   printf("]");
 }
 
+NO *criarNoVazio(ITEM item) {
+  NO *no = malloc(sizeof(NO));
+  no->item = item;
+  return no;
+}
+
 int main(){
     return 0;
 }

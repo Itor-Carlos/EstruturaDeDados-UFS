@@ -29,6 +29,19 @@ int tamanhoLista(LISTA *lista){
    return lista->tamanho;
 }
 
+void exibirLista(LISTA *l) {
+  printf("[");
+  NO *p = l->cabeca;
+  while (p) // enquando nao chegou ao final da lista
+  {
+    exibirItem(p->item);
+    if (p->prox)
+      printf(",");
+    p = p->prox;
+  }
+  printf("]");
+}
+
 int main(){
     return 0;
 }

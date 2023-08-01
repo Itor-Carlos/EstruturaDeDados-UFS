@@ -48,6 +48,57 @@ NO *criarNoVazio(ITEM item) {
   return no;
 }
 
+bool inserir(ITEM item, LISTA *l) {
+  NO *pNovo = criarNo(item, NULL, l->cabeca);
+  if (l->tamanho == 0) {
+    l->cabeca = pNovo;
+    pNovo->prox = NULL;
+    pNovo->ant = NULL;
+    l->cauda = pNovo;
+    l->tamanho++;
+  } else if (l->tamanho == 1) {
+    if (l->cabeca->item < item) {
+      l->cabeca->prox = pNovo;
+      l->cauda = pNovo;
+      pNovo->prox = NULL;
+      pNovo->ant = l->cabeca->prox;
+      l->tamanho++;
+    } else {
+      NO *noAux;
+      noAux = l->cabeca;
+      l->cabeca = pNovo;
+      pNovo->ant = NULL;
+      pNovo->prox = noAux;
+      l->tamanho++;
+    }
+  } else if (l->cauda->item < item) {
+    pNovo = criarNo(item, l->cauda, NULL);
+    l->cauda->prox = pNovo;
+    l->cauda = pNovo;
+    l->tamanho++;
+  } else {
+    NO *noAnterior;
+    NO *noPosterior;
+    NO *cabeca = l->cabeca;
+
+    while (cabeca->prox != NULL) {
+      if (noAnterior->item < item && noPosterior->item > item) {
+        NO *novoNo = criarNo(item, noAnterior, noPosterior);
+        noPosterior->ant = novoNo;
+        noAnterior->prox = novoNo;
+        l->tamanho++;
+      }
+
+      noAnterior = cabeca;
+      cabeca = cabeca->prox;
+      noPosterior = cabeca;
+      printf("%d | %d | %d\n", noAnterior->item, cabeca->item,
+             noPosterior->item);
+    }
+  }
+  return false;
+}
+
 int main(){
     return 0;
 }

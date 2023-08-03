@@ -11,9 +11,60 @@ typedef struct {
     int tamanho;
 } LISTA_ENCADEADA;
 
-void inserir(LISTA_ENCADEADA *lista, int item){
-    lista->cabeca = criarNo(item, lista->cabeca);
-    lista->tamanho++;
+bool inserir(ITEM item, LISTA *l) {
+
+  NO *no = criarNo(item, l->cabeca);
+  NO *noAux = no;
+
+  if (l->tamanho == 0) {
+    l->cabeca = no;
+    l->cauda = no;
+    l->tamanho++;
+    return true;
+  } 
+  else if (l->tamanho == 1) {
+    if (item < l->cabeca->item) {
+      noAux = l->cabeca;
+      l->cabeca = no;
+      l->cabeca->prox = noAux;
+      l->tamanho++;
+      return true;
+    } else {
+      NO* noFinal = criarNoFinal(item);
+      l->cauda->prox = noFinal;
+      l->cauda = noFinal;
+      l->tamanho++;
+      return true;
+    }
+  }
+  else if(item > l->cauda->item){
+    NO* noFinal = criarNoFinal(item);
+    l->cauda->prox = noFinal;
+    l->cauda = noFinal;
+    l->tamanho++;
+    return true;
+  }
+
+  else {
+    NO *anterior = l->cabeca;
+    NO *posterior = l->cabeca->prox;
+    NO *cabeca = l->cabeca;
+
+    while(cabeca != NULL){
+      if (item > anterior->item && item < posterior->item) {
+        anterior->prox = no;
+        no->prox = posterior;
+        l->tamanho++;
+        return true;
+      }
+      anterior = cabeca;
+      cabeca = cabeca->prox;
+      posterior = cabeca;
+    }
+  }
+  
+
+  return false;
 }
 
 void inicializar(LISTA_ENCADEADA *lista){

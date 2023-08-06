@@ -116,6 +116,24 @@ bool removerDaPos(ITEM item, int posicao, LISTA *lista) {
   }
 }
 
+LISTA *clonar(LISTA *l) {
+
+  LISTA *listaCopia;
+  inicializar(listaCopia);
+
+  if (l->tamanho == 0) {
+    listaCopia->cabeca->prox = NULL;
+    return listaCopia;
+  } else {
+    NO *cabecaListaCopiada = l->cabeca;
+    NO *auxNo = l->cabeca;
+    listaCopia->cabeca = auxNo;
+    printf("%d", listaCopia->cabeca->item);
+
+    return listaCopia;
+  }
+}
+
 int main(){
     
 

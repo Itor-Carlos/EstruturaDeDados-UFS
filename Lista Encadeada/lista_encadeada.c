@@ -91,6 +91,31 @@ bool igual(int item, int itemComparativo){
     return item == itemComparativo;
 }
 
+
+bool removerDaPos(ITEM item, int posicao, LISTA *lista) {
+  NO *cabeca = lista->cabeca;
+  NO *noAnterior = cabeca->prox;
+  NO *noPosterior = cabeca->prox;
+
+  int i = 0;
+  if ((posicao > lista->tamanho) || (posicao < 0))
+    return false;
+  else if (posicao == 0)
+    lista->cabeca = noAnterior;
+  else {
+    for (i = 0; i < posicao; i++) {
+      if (i == posicao) {
+        noAnterior->prox = noPosterior;
+        lista->tamanho--;
+        return true;
+      }
+      noAnterior = cabeca;
+      cabeca = cabeca->prox;
+      noPosterior = cabeca->prox;
+    }
+  }
+}
+
 int main(){
     
 

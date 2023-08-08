@@ -5,3 +5,4 @@ Estruturas implementadas até o momento:
  - Lista Sequencial Estatica
  - Lista Sequencial Dinamica
  - Lista Encadeada
+ - Lista Duplamente Encadeada

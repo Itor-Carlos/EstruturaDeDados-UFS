@@ -145,6 +145,16 @@ void limpar(LISTA *l) {
   l->tamanho = 0;
 }
 
+ITEM enesimo(int n, LISTA *l) {
+  NO *no = noNaPosicao(n, l);
+  if (no)
+    return no->item;
+  else {
+    printf("Posicao inexistente na lista (%d)\n", n);
+    exit(EXIT_FAILURE);
+  }
+}
+
 int main(){
     
 

@@ -134,6 +134,17 @@ LISTA *clonar(LISTA *l) {
   }
 }
 
+void limpar(LISTA *l) {
+  NO *atual = l->cabeca;
+  while (atual) {
+    NO *prox = atual->prox; 
+    free(atual);            
+    atual = prox;
+  }
+  l->cabeca = NULL; 
+  l->tamanho = 0;
+}
+
 int main(){
     
 

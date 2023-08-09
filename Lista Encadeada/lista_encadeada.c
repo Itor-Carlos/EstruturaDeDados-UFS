@@ -156,21 +156,26 @@ ITEM enesimo(int n, LISTA *l) {
 }
 
 LISTA *clonar(LISTA *l) {
+  LISTA *listaCopia = (LISTA *)malloc(sizeof(LISTA));
+  listaCopia->cabeca = NULL;
+  listaCopia->cauda = NULL;
+  listaCopia->tamanho = 0;
 
-  LISTA *listaCopia;
-  inicializar(listaCopia);
-
-  if (l->tamanho == 0) {
-    listaCopia->cabeca->prox = NULL;
-    return listaCopia;
-  } else {
-    NO *cabecaListaCopiada = l->cabeca;
-    NO *auxNo = l->cabeca;
-    listaCopia->cabeca = auxNo;
-    printf("%d", listaCopia->cabeca->item);
-
-    return listaCopia;
+  NO *prox = l->cabeca;
+  while (prox != NULL) {
+    NO *novoNo = criarNo(prox->item, NULL);
+    if (listaCopia->cabeca == NULL) {
+      listaCopia->cabeca = novoNo;
+      listaCopia->cauda = novoNo;
+    } else {
+      listaCopia->cauda->prox = novoNo;
+      listaCopia->cauda = novoNo;
+    }
+    listaCopia->tamanho++;
+    prox = prox->prox;
   }
+
+  return listaCopia;
 }
 
 int main(){

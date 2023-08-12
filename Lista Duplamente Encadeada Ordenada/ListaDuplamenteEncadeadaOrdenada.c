@@ -99,6 +99,14 @@ bool inserir(ITEM item, LISTA *l) {
   return false;
 }
 
+bool inserirNoFinal(ITEM item, LISTA *l) {
+
+  NO *noAux = l->cauda;
+  l->cauda->prox = criarNo(item, l->cauda, NULL);
+  l->cauda = l->cauda->prox;
+  return true;
+}
+
 int main(){
     return 0;
 }

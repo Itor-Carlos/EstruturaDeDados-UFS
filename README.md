@@ -6,3 +6,4 @@ Estruturas implementadas até o momento:
  - Lista Sequencial Dinamica
  - Lista Encadeada
  - Lista Duplamente Encadeada
+ - Pilha

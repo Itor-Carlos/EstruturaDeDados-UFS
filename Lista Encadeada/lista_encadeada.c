@@ -178,6 +178,19 @@ LISTA *clonar(LISTA *l) {
   return listaCopia;
 }
 
+void inverter(LISTA *lista){
+  NO* noAux = NULL;
+  NO* noAtual = lista->cabeca;
+  NO* atual = lista->cabeca;
+  while(noAtual != NULL){
+    lista->cabeca = criarNo(noAtual->item, NULL);
+    noAtual = noAtual->prox;
+  }
+
+  lista->cabeca = noAtual;
+  
+}
+
 int main(){
     
 

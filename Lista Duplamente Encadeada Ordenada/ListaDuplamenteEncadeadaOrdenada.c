@@ -107,6 +107,19 @@ bool inserirNoFinal(ITEM item, LISTA *l) {
   return true;
 }
 
+int buscar(ITEM item, LISTA *l) {
+  NO *p = l->cabeca;
+  int pos = 0;
+  while (p) 
+  {
+    if (igual(item, p->item))
+      return pos;
+    p = p->prox;
+    pos++;
+  }
+  return -1; 
+}
+
 int main(){
     return 0;
 }

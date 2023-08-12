@@ -178,6 +178,29 @@ LISTA *clonar(LISTA *l) {
   return listaCopia;
 }
 
+void intersecao(LISTA *listaA, LISTA *listaB, LISTA *listaI) {
+  NO *cabecaListaA = listaA->cabeca;
+  NO *cabecaListaB = listaB->cabeca;
+  NO *noAux = NULL;
+
+  while (cabecaListaA != NULL) {
+    cabecaListaB = listaB->cabeca;
+    while (cabecaListaB != NULL) {
+      if (cabecaListaA->item == cabecaListaB->item) {
+        if (listaI->cabeca == NULL) {
+          listaI->cabeca = criarNo(cabecaListaA->item, NULL);
+          listaI->cauda = listaI->cabeca;
+        } else {
+          listaI->cauda->prox = criarNo(cabecaListaA->item, NULL);
+          listaI->cauda = listaI->cauda->prox;
+        }
+      }
+      cabecaListaB = cabecaListaB->prox;
+    }
+    cabecaListaA = cabecaListaA->prox;
+  }
+}
+
 void inverter(LISTA *lista){
   NO* noAux = NULL;
   NO* noAtual = lista->cabeca;

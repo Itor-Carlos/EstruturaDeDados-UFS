@@ -120,6 +120,18 @@ int buscar(ITEM item, LISTA *l) {
   return -1; 
 }
 
+void limpar(LISTA *l) {
+  NO *atual = l->cabeca;
+  while (atual) 
+  {
+    NO *prox = atual->prox; 
+    free(atual);            
+    atual = prox;
+  }
+  l->cabeca = NULL;
+  l->tamanho = 0;
+}
+
 int main(){
     return 0;
 }

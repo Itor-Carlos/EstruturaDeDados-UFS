@@ -154,6 +154,33 @@ bool removerDaPos(ITEM *item, int i, LISTA *l) {
   }
 }
 
+void inverter(LISTA *l) {
+  NO *noAux = NULL;
+  NO *noAnterior = NULL;
+  NO *cabeca = NULL;
+  NO *percorreLista = l->cabeca;
+
+  LISTA *lista = (LISTA *)malloc(sizeof(ITEM) * l->tamanho);
+
+  while (percorreLista != NULL) {
+    if (lista->tamanho == 0) {
+      noAux = criarNo(percorreLista->item, NULL, NULL);
+      cabeca = noAux;
+      lista->cabeca = noAux;
+      lista->cauda = noAux;
+      lista->tamanho++;
+    } else {
+      noAux = criarNo(percorreLista->item, NULL, NULL);
+      lista->cabeca = noAux;
+      noAux->prox = cabeca;
+      cabeca = noAux;
+    }
+    percorreLista = percorreLista->prox;
+  }
+
+  l->cabeca = lista->cabeca;
+}
+
 int main(){
     return 0;
 }

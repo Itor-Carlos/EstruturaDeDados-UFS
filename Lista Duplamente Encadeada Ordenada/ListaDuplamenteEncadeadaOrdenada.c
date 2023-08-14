@@ -132,6 +132,28 @@ void limpar(LISTA *l) {
   l->tamanho = 0;
 }
 
+bool removerDaPos(ITEM *item, int i, LISTA *l) {
+  NO *noCabeca = l->cabeca->prox;
+  NO *noAnterior;
+  NO *noProximo;
+
+  int j = 0;
+
+  while (noCabeca) {
+    if (i - 1 == j) {
+      noAnterior->prox = noProximo;
+      noProximo->ant = noAnterior;
+      item = &noCabeca->item;
+      return true;
+    }
+
+    noCabeca = noCabeca->prox;
+    noAnterior = noCabeca->ant;
+    noProximo = noCabeca->prox;
+    j++;
+  }
+}
+
 int main(){
     return 0;
 }

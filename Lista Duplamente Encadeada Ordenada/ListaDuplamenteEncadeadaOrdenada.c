@@ -181,6 +181,8 @@ void inverter(LISTA *l) {
   l->cabeca = lista->cabeca;
 }
 
+void destruir(LISTA *l) { limpar(l); }
+
 int main(){
     return 0;
 }

@@ -183,6 +183,8 @@ void inverter(LISTA *l) {
 
 void destruir(LISTA *l) { limpar(l); }
 
+void exibirItem(ITEM i) { printf("%d", i); }
+
 int main(){
     return 0;
 }
